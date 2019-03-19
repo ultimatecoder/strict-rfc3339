@@ -25,6 +25,10 @@ import strict_rfc3339
 class TestValidateRFC3339(unittest.TestCase):
     validate = staticmethod(strict_rfc3339.validate_rfc3339)
 
+    def test_accepts_format_with_microsecounds(self):
+        assert self.validate("2017-07-13T03:49:07.658027")
+        assert self.validate("2020-09-13T03:49:07.000027")
+
     def test_rejects_bad_format(self):
         assert not self.validate("asdf")
         assert not self.validate("24822")
